@@ -6,14 +6,14 @@
 {%- for value in product.metafields.custom.filter.value -%}
 {{- value -}},
 {%- endfor -%}
- {%- endcapture -%}
-  {%- assign val = valuee | split: ',' -%}
-          {%- assign val_split = val -%}
-          {%- assign uniq_val = val_split | uniq | join: ',' -%}
+{%- endcapture -%}
+{%- assign val = valuee | split: ',' -%}
+{%- assign val_split = val -%}
+{%- assign uniq_val = val_split | uniq | join: ',' -%}
 {{ uniq_val }},
-  {%- endif -%}
+{%- endif -%}
 {%- endfor -%}
-      {%- endcapture -%}
+{%- endcapture -%}
 {%- endpaginate -%}
 
 <div class="c_homefilters-main color-accent-1 gradient" data-url="">
@@ -23,16 +23,16 @@
 </div>
 
 <div class="c_homefilters-master">
-  <h2>{{ uniq_select }}</h2>
+<h2>{{ uniq_select }}</h2>
 <select>
-            <option value="nofiltervaluee">Select Make</option>
-    {% assign val = uniq_select | split: ',' %}
-            {%- for value in val -%}
-              {% assign split_val = value | split: '|' %}
-              {% assign yearrange = split_val[2] | split: '~' %}
-              <option class="" data-make="{{ split_val[0] }}" data-model="{{ split_val[1] }}" data-year="{{ split_val[2] }}" year-min="{{ yearrange[0] }}" year-max="{% if yearrange[1] != blank %}{{ yearrange[1] }}{% else %}{{ yearrange[0] }}{% endif %}" value="{{ value }}">{{ value }}</option>
-            {%- endfor -%}
-          </select>
+          <option value="nofiltervaluee">Select Make</option>
+  {% assign val = uniq_select | split: ',' %}
+          {%- for value in val -%}
+            {% assign split_val = value | split: '|' %}
+            {% assign yearrange = split_val[2] | split: '~' %}
+            <option class="" data-make="{{ split_val[0] }}" data-model="{{ split_val[1] }}" data-year="{{ split_val[2] }}" year-min="{{ yearrange[0] }}" year-max="{% if yearrange[1] != blank %}{{ yearrange[1] }}{% else %}{{ yearrange[0] }}{% endif %}" value="{{ value }}">{{ value }}</option>
+          {%- endfor -%}
+        </select>
 </div>
 
 <div class="c_homefilters">
@@ -41,24 +41,22 @@
 {%- capture select_one -%}
 {%- assign val = uniq_select | split: ',' -%}
 {%- for value in val -%}
-    {%- assign val = value | split: '|' -%}
-          {%- assign val_split = val -%}
-          {%- assign uniq_val = val_split | uniq -%}
+  {%- assign val = value | split: '|' -%}
+        {%- assign val_split = val -%}
+        {%- assign uniq_val = val_split | uniq -%}
 {{- uniq_val[0] -}},
 {%- endfor -%}
 {%- endcapture -%}
 {%- assign val_one = select_one | split: ',' -%}
-          {%- assign val_split_one = val_one -%}
-          {%- assign uniq_val_one = val_split_one | uniq | join: ',' -%}
-{% comment %}
-{{ uniq_val_one }}
-{% endcomment %}
+        {%- assign val_split_one = val_one -%}
+        {%- assign uniq_val_one = val_split_one | uniq | join: ',' -%}
+
 <select>
 <option value="nofiltervaluee">Select Make</option>
-  {%- assign select_one = uniq_val_one | split: ',' -%}
-  {%- for value in select_one -%}
+{%- assign select_one = uniq_val_one | split: ',' -%}
+{%- for value in select_one -%}
 <option value="{{ value }}">{{ value }}</option>
-   {%- endfor -%} 
+ {%- endfor -%} 
 </select>
 </div>
 
@@ -66,53 +64,35 @@
 {%- capture select_two -%}
 {%- assign val = uniq_select | split: ',' -%}
 {%- for value in val -%}
-    {%- assign val = value | split: '|' -%}
-          {%- assign val_split = val -%}
-          {%- assign uniq_val = val_split | uniq -%}
+  {%- assign val = value | split: '|' -%}
+        {%- assign val_split = val -%}
+        {%- assign uniq_val = val_split | uniq -%}
 {{- uniq_val[1] -}},
 {%- endfor -%}
 {%- endcapture -%}
 {%- assign val_two = select_two | split: ',' -%}
-          {%- assign val_split_two = val_two -%}
-          {%- assign uniq_val_two = val_split_two | uniq | join: ',' -%}
-{% comment %}
-{{ uniq_val_two }}
-{% endcomment %}
+        {%- assign val_split_two = val_two -%}
+        {%- assign uniq_val_two = val_split_two | uniq | join: ',' -%}
 <select>
 <option value="nofiltervaluee">Select Model</option>
-  {% comment %}
-  {%- assign select_two = uniq_val_two | split: ',' -%}
-  {%- for value in select_two -%}
-<option value="{{ value }}">{{ value }}</option>
-   {%- endfor -%} 
-  {% endcomment %}
 </select>
 </div>
 
- <div class="c_homefilters-a c_homefilters-year">
+<div class="c_homefilters-a c_homefilters-year">
 {%- capture select_third -%}
 {%- assign val = uniq_select | split: ',' -%}
 {%- for value in val -%}
-    {%- assign val = value | split: '|' -%}
-          {%- assign val_split = val -%}
-          {%- assign uniq_val = val_split | uniq -%}
+  {%- assign val = value | split: '|' -%}
+        {%- assign val_split = val -%}
+        {%- assign uniq_val = val_split | uniq -%}
 {{- uniq_val[2] -}},
 {%- endfor -%}
 {%- endcapture -%}
 {%- assign val_third = select_third | split: ',' -%}
-          {%- assign val_split_third = val_third -%}
-          {%- assign uniq_val_third = val_split_third | uniq | join: ',' -%}
-     {% comment %}
-{{ uniq_val_third }}
-  {% endcomment %}
+        {%- assign val_split_third = val_third -%}
+        {%- assign uniq_val_third = val_split_third | uniq | join: ',' -%}
 <select>
 <option value="nofiltervaluee">Select Year</option>
-     {% comment %}
-  {%- assign select_third = uniq_val_third | split: ',' | sort -%}
-  {%- for value in select_third -%}
-<option value="{{ value }}">{{ value }}</option>
-   {%- endfor -%} 
-      {% endcomment %}
 </select>
 </div>
 
@@ -122,3 +102,29 @@
 </div>
 </div>
 </div>
+
+{% schema %}
+  {
+    "name": "Homage Page Filters",
+    "settings": [
+      {
+        "type" : "text",
+        "id" : "c_heading",
+        "label" : "Heading",
+        "default" : "Search by Make Model Year"
+      },
+       {
+        "type" : "text",
+        "id" : "c_btn",
+        "label" : "Button",
+        "default" : "Search"
+      }
+    ],
+    "presets" : [
+      {
+        "name" : "C Homepage Filters",
+        "category" : "custom"
+      }
+    ]
+  }
+{% endschema %}
