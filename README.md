@@ -9,6 +9,7 @@ For the years you can add the year range separayed with ~ symbol
 So the make model and year range in the filter metafield will look something like 
 
 Honda|Civic|2001~2006
+
 Toyota|Corolla|2018~2023
 
 This section can be added in the home page and after user have selected the Make Model and Year it will redirect them to the collections page with filtered result. 
