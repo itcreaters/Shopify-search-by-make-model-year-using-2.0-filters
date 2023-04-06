@@ -30,7 +30,7 @@
           {%- for value in val -%}
             {% assign split_val = value | split: '|' %}
             {% assign yearrange = split_val[2] | split: '~' %}
-            <option class="" data-make="{{ split_val[0] }}" data-model="{{ split_val[1] }}" data-year="{{ split_val[2] }}" year-min="{{ yearrange[0] }}" year-max="{% if yearrange[1] != blank %}{{ yearrange[1] }}{% else %}{{ yearrange[0] }}{% endif %}" value="{{ value }}">{{ value }}</option>
+            <option class="" data-make="{{ split_val[0] | capitalize }}" data-model="{{ split_val[1] }}" data-year="{{ split_val[2] }}" year-min="{{ yearrange[0] }}" year-max="{% if yearrange[1] != blank %}{{ yearrange[1] }}{% else %}{{ yearrange[0] }}{% endif %}" value="{{ value }}">{{ value }}</option>
           {%- endfor -%}
         </select>
 </div>
@@ -44,16 +44,17 @@
   {%- assign val = value | split: '|' -%}
         {%- assign val_split = val -%}
         {%- assign uniq_val = val_split | uniq -%}
-{{- uniq_val[0] -}},
+{{- uniq_val[0] | strip | capitalize -}},
 {%- endfor -%}
 {%- endcapture -%}
 {%- assign val_one = select_one | split: ',' -%}
         {%- assign val_split_one = val_one -%}
         {%- assign uniq_val_one = val_split_one | uniq | join: ',' -%}
-
+        {% assign sort_arry = uniq_val_one | split: "," %}
+        {% assign sorted_arr = sort_arry | sort_natural | join: ", " %}
 <select>
 <option value="nofiltervaluee">Select Make</option>
-{%- assign select_one = uniq_val_one | split: ',' -%}
+{%- assign select_one = sorted_arr | split: ',' -%}
 {%- for value in select_one -%}
 <option value="{{ value }}">{{ value }}</option>
  {%- endfor -%} 
